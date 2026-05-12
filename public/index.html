@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MicroBlog</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+    <script>
+        if (!localStorage.getItem('currentUser')) window.location.replace('login.html');
+    </script>
     <div class="layout">
 
         <!-- ===== SIDEBAR IZQUIERDO ===== -->
         <aside class="sidebar-left">
             <div class="logo">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
                 <span>MicroBlog</span>
             </div>
 
@@ -29,7 +34,23 @@
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.37.86.58 1.41.58s1.05-.21 1.41-.59l7-7c.37-.36.59-.86.59-1.41s-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/></svg>
                     <span>Etiquetas</span>
                 </a>
+                <a href="#" class="nav-item" data-view="perfil">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+                    <span>Mi perfil</span>
+                </a>
             </nav>
+
+            <!-- Chip usuario actual -->
+            <div class="user-chip" id="user-chip">
+                <div class="post-avatar user-chip-avatar" id="chip-avatar">?</div>
+                <div class="user-chip-info">
+                    <div class="user-chip-name" id="chip-nombre">—</div>
+                    <div class="user-chip-username" id="chip-username">@—</div>
+                </div>
+                <button class="btn-chip-logout" onclick="logout()" title="Cerrar sesión">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
+                </button>
+            </div>
 
             <div class="sidebar-stats" id="sidebar-stats">
                 <div class="stat-chip"><span class="stat-num" id="stat-posts">—</span><span>Posts</span></div>
@@ -49,6 +70,18 @@
 
             <!-- Vista: Feed de publicaciones -->
             <div id="view-feed">
+                <!-- Compose Box -->
+                <div class="compose-box">
+                    <div class="post-avatar" id="compose-avatar" style="background:var(--bg3)">?</div>
+                    <div class="compose-right">
+                        <span class="compose-username" id="compose-username"></span>
+                        <textarea id="compose-text" class="compose-textarea" placeholder="¿Qué está pasando?" rows="3"></textarea>
+                        <div class="compose-footer">
+                            <input type="text" id="compose-tags" class="compose-tags-input" placeholder="etiquetas: tech, colombia...">
+                            <button id="btn-submit-post" class="btn-post" onclick="submitPost()">Publicar</button>
+                        </div>
+                    </div>
+                </div>
                 <div id="posts-container">
                     <div class="skeleton-loader">
                         <div class="skeleton-post"></div>
@@ -63,7 +96,15 @@
 
             <!-- Vista: Usuarios -->
             <div id="view-usuarios" style="display:none;">
+                <div class="create-user-header">
+                    <span>Todos los usuarios</span>
+                </div>
                 <div id="usuarios-container"></div>
+            </div>
+
+            <!-- Vista: Perfil -->
+            <div id="view-perfil" style="display:none;">
+                <div id="perfil-container"></div>
             </div>
 
             <!-- Vista: Etiquetas -->
@@ -100,4 +141,5 @@
 
     <script src="app.js"></script>
 </body>
+
 </html>

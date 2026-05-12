@@ -14,96 +14,90 @@ const uid5  = new ObjectId(); const uid6  = new ObjectId();
 const uid7  = new ObjectId(); const uid8  = new ObjectId();
 const uid9  = new ObjectId(); const uid10 = new ObjectId();
 
+// Fecha base: un año atrás, usuarios registrados con 7 días de diferencia
+const baseDate = new Date(Date.now() - 365 * 86400000);
+const userDate = i => new Date(baseDate.getTime() + i * 7 * 86400000);
+
 db.usuarios.insertMany([
     {
-        _id: uid1,
-        nombreUsuario: "carlos_dev",
-        nombreVisible: "Carlos Mendoza",
-        hashContraseña: "hashed_pw_1",
+        _id: uid1, fechaCreacion: userDate(0),
+        nombreUsuario: "carlos_dev",   nombreVisible: "Carlos Mendoza",
+        correo: "carlos.mendoza@correo.com", hashContraseña: "Dev#Carlos24",
         biografia: "Desarrollador fullstack. Next.js + TypeScript lover.",
         siguiendo: [uid2, uid3, uid5],
-        estadisticas: { cantidadPosts: 5, cantidadSeguidores: 120 }
+        estadisticas: { cantidadPosts: 5, cantidadSeguidores: 3 }
     },
     {
-        _id: uid2,
-        nombreUsuario: "sofia_design",
-        nombreVisible: "Sofía Ramírez",
-        hashContraseña: "hashed_pw_2",
+        _id: uid2, fechaCreacion: userDate(1),
+        nombreUsuario: "sofia_design",  nombreVisible: "Sofía Ramírez",
+        correo: "sofia.ramirez@correo.com", hashContraseña: "Sofia@Design1",
         biografia: "UX/UI Designer. Apasionada por el branding y la identidad visual.",
         siguiendo: [uid1, uid4, uid6],
-        estadisticas: { cantidadPosts: 4, cantidadSeguidores: 98 }
+        estadisticas: { cantidadPosts: 4, cantidadSeguidores: 4 }
     },
     {
-        _id: uid3,
-        nombreUsuario: "miguel_ing",
-        nombreVisible: "Miguel Torres",
-        hashContraseña: "hashed_pw_3",
+        _id: uid3, fechaCreacion: userDate(2),
+        nombreUsuario: "miguel_ing",    nombreVisible: "Miguel Torres",
+        correo: "miguel.torres@correo.com", hashContraseña: "Migue.Ing2023",
         biografia: "Estudiante de ingeniería electrónica. Arduino y Python.",
         siguiendo: [uid1, uid9, uid10],
-        estadisticas: { cantidadPosts: 4, cantidadSeguidores: 75 }
+        estadisticas: { cantidadPosts: 4, cantidadSeguidores: 4 }
     },
     {
-        _id: uid4,
-        nombreUsuario: "laura_foto",
-        nombreVisible: "Laura Gómez",
-        hashContraseña: "hashed_pw_4",
+        _id: uid4, fechaCreacion: userDate(3),
+        nombreUsuario: "laura_foto",    nombreVisible: "Laura Gómez",
+        correo: "laura.gomez@correo.com", hashContraseña: "Laura*Foto24",
         biografia: "Fotógrafa y videasta. Colombia desde el aire.",
         siguiendo: [uid5, uid8, uid9],
-        estadisticas: { cantidadPosts: 4, cantidadSeguidores: 210 }
+        estadisticas: { cantidadPosts: 4, cantidadSeguidores: 3 }
     },
     {
-        _id: uid5,
-        nombreUsuario: "andres_chef",
-        nombreVisible: "Andrés Vargas",
-        hashContraseña: "hashed_pw_5",
+        _id: uid5, fechaCreacion: userDate(4),
+        nombreUsuario: "andres_chef",   nombreVisible: "Andrés Vargas",
+        correo: "andres.vargas@correo.com", hashContraseña: "Chef&Gourmet7",
         biografia: "Chef profesional. Gastronomía colombiana e italiana.",
         siguiendo: [uid2, uid8, uid10],
-        estadisticas: { cantidadPosts: 4, cantidadSeguidores: 185 }
+        estadisticas: { cantidadPosts: 4, cantidadSeguidores: 4 }
     },
     {
-        _id: uid6,
-        nombreUsuario: "valentina_art",
-        nombreVisible: "Valentina Cruz",
-        hashContraseña: "hashed_pw_6",
+        _id: uid6, fechaCreacion: userDate(5),
+        nombreUsuario: "valentina_art", nombreVisible: "Valentina Cruz",
+        correo: "valentina.cruz@correo.com", hashContraseña: "Val#Art2024!",
         biografia: "Artista digital. Fanart, retratos y speedpaints.",
         siguiendo: [uid1, uid3, uid7],
-        estadisticas: { cantidadPosts: 4, cantidadSeguidores: 310 }
+        estadisticas: { cantidadPosts: 4, cantidadSeguidores: 5 }
     },
     {
-        _id: uid7,
-        nombreUsuario: "jorge_musica",
-        nombreVisible: "Jorge Patiño",
-        hashContraseña: "hashed_pw_7",
+        _id: uid7, fechaCreacion: userDate(6),
+        nombreUsuario: "jorge_musica",  nombreVisible: "Jorge Patiño",
+        correo: "jorge.patino@correo.com", hashContraseña: "Jazz.Guitar77",
         biografia: "Guitarrista. Blues, flamenco y jazz. EP en proceso.",
         siguiendo: [uid6, uid9, uid10],
-        estadisticas: { cantidadPosts: 3, cantidadSeguidores: 145 }
+        estadisticas: { cantidadPosts: 3, cantidadSeguidores: 3 }
     },
     {
-        _id: uid8,
-        nombreUsuario: "daniela_nutricion",
-        nombreVisible: "Daniela Ríos",
-        hashContraseña: "hashed_pw_8",
+        _id: uid8, fechaCreacion: userDate(7),
+        nombreUsuario: "daniela_nutricion", nombreVisible: "Daniela Ríos",
+        correo: "daniela.rios@correo.com", hashContraseña: "Nutri@Fit2024",
         biografia: "Nutricionista. Alimentación saludable sin aburrirse.",
         siguiendo: [uid5, uid9, uid4],
-        estadisticas: { cantidadPosts: 3, cantidadSeguidores: 220 }
+        estadisticas: { cantidadPosts: 3, cantidadSeguidores: 5 }
     },
     {
-        _id: uid9,
-        nombreUsuario: "sebastian_fit",
-        nombreVisible: "Sebastián López",
-        hashContraseña: "hashed_pw_9",
+        _id: uid9, fechaCreacion: userDate(8),
+        nombreUsuario: "sebastian_fit", nombreVisible: "Sebastián López",
+        correo: "sebastian.lopez@correo.com", hashContraseña: "Run4Ever#Seb",
         biografia: "Atleta amateur. Running, HIIT y maratones.",
         siguiendo: [uid8, uid3, uid1],
-        estadisticas: { cantidadPosts: 3, cantidadSeguidores: 175 }
+        estadisticas: { cantidadPosts: 3, cantidadSeguidores: 5 }
     },
     {
-        _id: uid10,
-        nombreUsuario: "paula_math",
-        nombreVisible: "Paula Herrera",
-        hashContraseña: "hashed_pw_10",
+        _id: uid10, fechaCreacion: userDate(9),
+        nombreUsuario: "paula_math",    nombreVisible: "Paula Herrera",
+        correo: "paula.herrera@correo.com", hashContraseña: "Pi3.1416Math!",
         biografia: "Matemática. Paradojas, álgebra de grupos y caos.",
         siguiendo: [uid1, uid3, uid6],
-        estadisticas: { cantidadPosts: 3, cantidadSeguidores: 130 }
+        estadisticas: { cantidadPosts: 3, cantidadSeguidores: 3 }
     }
 ]);
 
@@ -127,17 +121,26 @@ const p25 = new ObjectId(); const p26 = new ObjectId();
 const p27 = new ObjectId(); const p28 = new ObjectId();
 const p29 = new ObjectId(); const p30 = new ObjectId();
 
+// Helper: respuesta limpia con el esquema correcto
+const resp = (autorId, contenido, meGustaArr, minutosOffset) => ({
+    _id: new ObjectId(), autorId,
+    contenido, meGusta: meGustaArr,
+    cantidadMeGusta: meGustaArr.length,
+    fechaCreacion: new Date(now.getTime() - minutosOffset * 60000)
+});
+
 db.publicaciones.insertMany([
     {
         _id: p1, autorId: uid1, fechaCreacion: daysAgo(0.1),
+        editado: false, fechaEdicion: null,
         contenido: "Acabo de lanzar mi portafolio con Next.js y Tailwind. Tres semanas de trabajo pero valió cada línea de código. Link en bio!",
         urlsMultimedia: ["https://media.correo.com/p1_preview.jpg"],
         etiquetas: ["webdev", "nextjs", "tailwind", "portfolio"],
         meGusta: [uid2, uid3, uid5, uid6], reposts: [uid4, uid7],
-        cantidadRespuestas: 2, cantidadReposts: 2, cantidadMeGusta: 4,
+        cantidadMeGusta: 4, cantidadReposts: 2, cantidadRespuestas: 2,
         respuestas: [
-            { _id: new ObjectId(), autorId: uid2, contenido: "Se ve increíble! Cuánto tiempo tomó el diseño responsivo?", urlsMultimedia: [], meGusta: [uid1, uid3], cantidadRespuestas: 0, cantidadMeGusta: 2 },
-            { _id: new ObjectId(), autorId: uid5, contenido: "Definitivamente un referente. Lo comparto con mi equipo.", urlsMultimedia: [], meGusta: [uid1], cantidadRespuestas: 0, cantidadMeGusta: 1 }
+            resp(uid2, "Se ve increíble! Cuánto tiempo tomó el diseño responsivo?", [uid1, uid3], 5),
+            resp(uid5, "Definitivamente un referente. Lo comparto con mi equipo.",  [uid1],       10)
         ]
     },
     {
